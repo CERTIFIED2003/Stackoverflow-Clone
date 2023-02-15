@@ -1,5 +1,5 @@
 {
-  "name": "stackoverflow-clone",
+  "name": "stackoverflow-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
