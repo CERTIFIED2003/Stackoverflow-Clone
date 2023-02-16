@@ -8,17 +8,6 @@ const app = express();
 app.use(express.json());
 dotenv.config();
 
-// Declaring PORT
-const PORT = process.env.PORT || 8080;
-
-// Headers Cross Origin Resource Sharing
-const corsOptions = {
-    origin: '*',
-    credentials: true,
-    optionSuccessStatus: 200,
-}
-app.use(cors(corsOptions));
-
 // Linkage with static files on frontend part
 app.use(express.static(path.join(__dirname, "/../frontend/build")));
 app.get("*", (req, res) => {
@@ -31,14 +20,25 @@ app.get("*", (req, res) => {
 });
 app.use("/upload", express.static(path.join(__dirname, "/../uploads")));
 
+// Headers Cross Origin Resource Sharing
+const corsOptions = {
+    origin: '*',
+    credentials: true,
+    optionSuccessStatus: 200,
+}
+app.use(cors(corsOptions));
+
 // Parsing
 app.use(bodyParser.json({
-    limit: "10mb"
+    limit: "50mb"
 }));
 app.use(bodyParser.urlencoded({
     extended: true,
-    limit: "10mb"
+    limit: "50mb"
 }));
+
+// Declaring PORT
+const PORT = process.env.PORT || 8080;
 
 // Server startup
 app.listen(PORT, () => {
